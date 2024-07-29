@@ -7,3 +7,6 @@ import seaborn as sns
 ##Reading in the dataset
 df = pd.read_csv("C:\\Users\\Administrator\\Documents\\GitHub\\Trending-YouTube-Videos-2019-to-2020\\Trending Youtube Videos 2019 to 2020.csv")
 print (df.head(5))
+
+#Data types
+print(df.dtypes)
