@@ -13,3 +13,6 @@ print(df.dtypes)
 
 #Viewing all the columns in our dataset
 print(df.columns)
+
+#Summary Statistics
+print(df.describe().T)
