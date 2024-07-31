@@ -21,3 +21,12 @@ print(df.describe().T)
 print(df.isnull().sum())
 #Checking for duplicates
 print(df.duplicated().sum())
+
+#Plotting distributions
+fig, axs = plt.subplots(2, 2, figsize=(15, 10))
+sns.histplot(df['views'], bins=50, ax=axs[0, 0], color='red').set_title('Distribution of Views')
+sns.histplot(df['likes'], bins=50, ax=axs[0, 1], color='red').set_title('Distribution of Likes')
+sns.histplot(df['comments'], bins=50, ax=axs[1, 0], color='red').set_title('Distribution of Comments')
+sns.histplot(df['dislikes'], bins=50, ax=axs[1, 1], color='red').set_title('Distribution of Dislikes')
+plt.tight_layout()
+plt.show()
