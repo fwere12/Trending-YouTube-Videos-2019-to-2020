@@ -16,3 +16,8 @@ print(df.columns)
 
 #Summary Statistics
 print(df.describe().T)
+
+#Checking for missing values in the dataset
+print(df.isnull().sum())
+#Checking for duplicates
+print(df.duplicated().sum())
