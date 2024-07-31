@@ -10,3 +10,6 @@ print (df.head(5))
 
 #Data types
 print(df.dtypes)
+
+#Viewing all the columns in our dataset
+print(df.columns)
