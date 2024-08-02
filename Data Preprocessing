@@ -49,3 +49,10 @@ sns.lineplot(data=daily_stats, x='date', y='dislikes', ax=axs[3], color='red').s
 
 plt.tight_layout()
 plt.show()
+
+#Correlation
+correlation_matrix = df[['views', 'likes', 'comments', 'dislikes']].corr()
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='Reds')
+plt.title('Correlation Matrix')
+plt.show()
