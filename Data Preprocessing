@@ -30,3 +30,22 @@ sns.histplot(df['comments'], bins=50, ax=axs[1, 0], color='red').set_title('Dist
 sns.histplot(df['dislikes'], bins=50, ax=axs[1, 1], color='red').set_title('Distribution of Dislikes')
 plt.tight_layout()
 plt.show()
+
+#Lineplots
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+# Extract the date from the timestamp
+df['date'] = df['timestamp'].dt.date
+
+# Group by date and calculate daily sums
+daily_stats = df.groupby('date').agg({'views': 'sum', 'likes': 'sum', 'comments': 'sum', 'dislikes': 'sum'}).reset_index()
+
+# Plot the daily stats
+fig, axs = plt.subplots(4, 1, figsize=(15, 20))
+sns.lineplot(data=daily_stats, x='date', y='views', ax=axs[0], color='red').set_title('Views Over Time')
+sns.lineplot(data=daily_stats, x='date', y='likes', ax=axs[1], color='red').set_title('Likes Over Time')
+sns.lineplot(data=daily_stats, x='date', y='comments', ax=axs[2], color='red').set_title('Comments Over Time')
+sns.lineplot(data=daily_stats, x='date', y='dislikes', ax=axs[3], color='red').set_title('Dislikes Over Time')
+
+plt.tight_layout()
+plt.show()
