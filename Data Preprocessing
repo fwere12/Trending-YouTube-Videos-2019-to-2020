@@ -56,3 +56,10 @@ plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='Reds')
 plt.title('Correlation Matrix')
 plt.show()
+
+#Top videos
+top_videos_views = df.nlargest(10, 'views')[['ytvideoid', 'views', 'likes', 'comments', 'dislikes']]
+print(top_videos_views)
+
+top_videos_likes = df.nlargest(10, 'likes')[['ytvideoid', 'views', 'likes', 'comments', 'dislikes']]
+print(top_videos_likes)
