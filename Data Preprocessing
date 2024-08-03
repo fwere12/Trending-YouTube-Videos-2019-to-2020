@@ -63,3 +63,14 @@ print(top_videos_views)
 
 top_videos_likes = df.nlargest(10, 'likes')[['ytvideoid', 'views', 'likes', 'comments', 'dislikes']]
 print(top_videos_likes)
+
+# Scatter plot of dislikes vs. likes
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='likes', y='dislikes', data=df, color='orange')
+plt.title('Dislikes vs Likes')
+plt.xlabel('Likes')
+plt.ylabel('Dislikes')
+plt.show()
+
+
+
