@@ -72,5 +72,11 @@ plt.xlabel('Likes')
 plt.ylabel('Dislikes')
 plt.show()
 
-
+#Scatter plot of likes vs. comments
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='comments', y='likes', data=df, color='purple')
+plt.title('Likes vs Comments')
+plt.xlabel('Comments')
+plt.ylabel('Likes')
+plt.show()
 
