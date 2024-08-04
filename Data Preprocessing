@@ -80,3 +80,13 @@ plt.xlabel('Comments')
 plt.ylabel('Likes')
 plt.show()
 
+#Extract hour from timestamp for distribution analysis
+df['hour'] = df['timestamp'].dt.hour
+#Plot distribution of video publish times
+plt.figure(figsize=(10, 6))
+sns.histplot(df['hour'], bins=24, kde=False)
+plt.title('Distribution of Video Publish Times')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Frequency')
+plt.show()
+
