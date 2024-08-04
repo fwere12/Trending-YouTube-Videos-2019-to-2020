@@ -90,3 +90,23 @@ plt.xlabel('Hour of the Day')
 plt.ylabel('Frequency')
 plt.show()
 
+#Aggregate data by hour
+hourly_data = df.groupby('hour').agg({
+    'views': 'sum',
+    'comments': 'sum',
+    'likes': 'sum',
+    'dislikes': 'sum'
+}).reset_index()
+
+#Normalize data for better visual comparison
+hourly_data_normalized = hourly_data.set_index('hour').apply(lambda x: (x - x.min()) / (x.max() - x.min()), axis=0)
+
+#Plot heatmap of normalized views, comments, likes, and dislikes by hour
+plt.figure(figsize=(14, 7))
+ax = sns.heatmap(hourly_data_normalized.T, annot=True, cmap='YlGnBu', fmt='.2f', linewidths=0.5)
+plt.title('Heatmap of Normalized Views, Comments, Likes, and Dislikes by Hour')
+plt.xlabel('Hour of the Day')
+plt.ylabel('Metrics')
+plt.xticks(rotation=45)  #We rotate x-axis labels for better readability
+plt.tight_layout()  #Here we adjust layout to fit labels
+plt.show()
