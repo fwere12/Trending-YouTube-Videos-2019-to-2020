@@ -144,3 +144,49 @@ print(f"R^2 Score: {r2}")
 #Feature importance
 feature_importances = pd.DataFrame(model.feature_importances_, index=X_train.columns, columns=['importance']).sort_values('importance', ascending=False)
 print(feature_importances)
+
+#Model deployment
+import joblib
+from sklearn.ensemble import RandomForestRegressor
+
+# Load the trained model
+model = joblib.load('random_forest_model.pkl')
+
+# Title of the web app
+st.title("YouTube Video Statistics Prediction")
+
+# Sidebar inputs for user data
+st.sidebar.header("Input Features")
+
+def user_input_features():
+    likes = st.sidebar.number_input("Likes", min_value=0)
+    comments = st.sidebar.number_input("Comments", min_value=0)
+    dislikes = st.sidebar.number_input("Dislikes", min_value=0)
+    hour = st.sidebar.number_input("Hour of the day", min_value=0, max_value=23)
+    data = {
+        'likes': likes,
+        'comments': comments,
+        'dislikes': dislikes,
+        'hour': hour
+    }
+    features = pd.DataFrame(data, index=[0])
+    return features
+
+input_df = user_input_features()
+
+# Display the user input features
+st.subheader("User Input Features")
+st.write(input_df)
+
+# Predictions
+prediction = model.predict(input_df)
+
+# Display the prediction
+st.subheader("Prediction")
+st.write(f"Predicted Views: {int(prediction[0])}")
+
+# Feature importance
+if st.button("Show Feature Importance"):
+    feature_importances = pd.DataFrame(model.feature_importances_, index=input_df.columns, columns=['importance']).sort_values('importance', ascending=False)
+    st.subheader("Feature Importance")
+    st.bar_chart(feature_importances)
