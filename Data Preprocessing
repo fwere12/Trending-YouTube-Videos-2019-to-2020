@@ -151,6 +151,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 # Load the trained model
 model = joblib.load('random_forest_model.pkl')
+pip install streamlit
 
 # Title of the web app
 st.title("YouTube Video Statistics Prediction")
